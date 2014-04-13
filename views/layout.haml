@@ -18,9 +18,13 @@
 				%h2= SITE_DESCRIPTION
 		#main
 			- if flash[:notice]
-				.alert.alert-success= flash[:notice]
+				.alert.alert-success.alert-dismissable
+					%button.close{type: "button", :'data-dismiss' => "alert", :'aria-hidden' => "true"}x
+					= flash[:notice]
 			- if flash[:error]
-				.alert.alert-danger= flash[:error]
+				.alert.alert-danger.alert-dismissable
+					%button.close{type: "button", :'data-dismiss' => "alert", :'aria-hidden' => "true"}x
+					= flash[:error]
 			= yield
 
 		%footer
