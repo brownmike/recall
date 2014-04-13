@@ -1,0 +1,10 @@
+- if @note
+	%form{action: "/#{@note.id}", method: "post", id: "edit"}
+		%input{type: "hidden", name: "_method", value: "put"}
+		%textarea{name: "content"}= h @note.content
+		%input{type: "checkbox", name: "complete", checked: @checked_value}
+		%input{type: "submit"}
+		%p
+			%a{href: "/#{@note.id}/delete"} Delete Note
+- else
+	%p Note not found, gurl.

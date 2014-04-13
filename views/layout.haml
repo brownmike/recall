@@ -1,0 +1,30 @@
+!!! 5
+%html{lang: "en"}
+%head
+	%meta{charset: "utf8"}
+	%title= "#{@title} | #{SITE_TITLE}"
+	%link{href: "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", rel: "stylesheet"}
+	%link{href: "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css", rel: "stylesheet"}
+	%link{href: "/style.css", rel: "stylesheet"}
+	%link{href: "/rss.xml", rel: "alternate", type: "application/rss+xml"}
+	%script{src: "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"}
+	%script{src: "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"}
+%body
+	.container
+		%header
+			%hgroup
+				%h1
+					%a{href: "/"}= SITE_TITLE
+				%h2= SITE_DESCRIPTION
+		#main
+			- if flash[:notice]
+				.alert.alert-success= flash[:notice]
+			- if flash[:error]
+				.alert.alert-danger= flash[:error]
+			= yield
+
+		%footer
+			%p
+				%small
+					:markdown
+						An app based on the [Singing with Sinatra](http://code.tutsplus.com/series/singing-with-sinatra--net-19113) tutorials on [tuts+](https://tutsplus.com)

@@ -1,0 +1,16 @@
+%section{id: "add"}
+	%form{action: "/", method: "post", role: "form"}
+		.form-group
+			%textarea{name: "content", placeholder: "Your note ( flavored in Markdown )", class: "form-control"}
+		.form-group
+			%input{type: "submit", value: "Take Note!", class: "btn btn-success btn-large btn-block"}
+
+- @notes.each do |note|
+	%article
+		%div{class: "jumbotron #{'bg-success' if note.complete}"}
+			:markdown
+				#{note.content}
+		%a.btn.btn-default{href: "/#{note.id}", role: "button"}Edit
+		%a.btn.btn-danger{href: "/#{note.id}/delete", role: "button"}Delete
+		%a.btn.btn-primary{href: "/#{note.id}/complete", role: "button"}Complete &#10003;
+		%p.meta= "Created: #{note.created_at.strftime("%b %-d, %Y")}"
