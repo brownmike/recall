@@ -32,8 +32,15 @@ helpers do
 	end
 end
 
-before do
-	# TODO: Check for 5 notes
+set(:method) do |method|
+  method = method.to_s.upcase
+  condition { request.request_method == method }
+end
+
+before method: :post do
+	if Note.all.count >= 5
+		redirect "/", flash[:error] = "You have 5 notes already. Delete one first."
+	end
 end
 
 get "/" do
