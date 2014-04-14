@@ -1,10 +1,13 @@
 - if @note
-	%form{action: "/#{@note.id}", method: "post", id: "edit"}
+	%form{action: "/#{@note.id}", method: "post", id: "edit", role: "form"}
 		%input{type: "hidden", name: "_method", value: "put"}
-		%textarea{name: "content"}= h @note.content
-		%input{type: "checkbox", name: "complete", checked: @checked_value}
-		%input{type: "submit"}
-		%p
-			%a{href: "/#{@note.id}/delete"} Delete Note
+		.form-group
+			%textarea.form-control{name: "content"}= markdown @note.content
+		.form-group
+			%input.complete{type: "checkbox", name: "complete", id: "1", checked: @checked_value}
+			%label{for: "1"}Complete
+			%a.btn.btn-danger.pull-right{href: "/#{@note.id}/delete", role: "button"}Delete Note
+		.form-group
+			%input.btn.btn-success.btn-large{type: "submit"}
 - else
-	%p Note not found, gurl.
+	%h3 Note not found, gurl.

@@ -1,13 +1,13 @@
 %section{id: "add"}
 	%form{action: "/", method: "post", role: "form"}
 		.form-group
-			%textarea{name: "content", placeholder: "Your note ( flavored in Markdown )", class: "form-control"}
+			%textarea.form-control{name: "content", placeholder: "Your note ( flavored in Markdown )"}
 		.form-group
 			%input{type: "submit", value: "Take Note!", class: "btn btn-success btn-large btn-block"}
 
 - @notes.each do |note|
 	%article
-		%div{class: "jumbotron #{'bg-success' if note.complete}"}
+		%div{class: "jumbotron #{'completed' if note.complete}"}
 			:markdown
 				#{note.content}
 		%a.btn.btn-default{href: "/#{note.id}", role: "button"}Edit
